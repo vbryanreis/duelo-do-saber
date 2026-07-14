@@ -222,11 +222,16 @@ function getDialogue(region) {
 }
 
 const pickRandom = (list) => list?.length ? list[Math.floor(Math.random() * list.length)] : null;
+const pickVaried = (list, last) => {
+  if (!list?.length) return null;
+  if (list.length === 1) return list[0];
+  return pickRandom(list.filter((item) => item !== last));
+};
 
 function startCutscene(lines, onDone, endHint, options = {}) {
   const clean = (lines || []).filter(Boolean);
   if (!battle || !clean.length) return onDone();
-  battle.cutscene = { lines: clean, index: 0, onDone, endHint, sprite: options.sprite || null };
+  battle.cutscene = { lines: clean, index: 0, onDone, endHint, sprite: options.sprite || null, sprites: options.sprites || null };
   renderCutscene();
   if (options.voice) audio.voice(options.voice);
 }
@@ -248,7 +253,7 @@ function renderCutscene() {
   const line = cutscene.lines[cutscene.index];
   const last = cutscene.index >= cutscene.lines.length - 1;
   const hint = last ? cutscene.endHint || "Clique para continuar" : "Clique para continuar";
-  const rivalSprite = cutscene.sprite || region.rival.sprite;
+  const rivalSprite = (cutscene.sprites ? cutscene.sprites[cutscene.index] : cutscene.sprite) || region.rival.sprite;
   setView(`
     <section class="vn" data-action="advance-cutscene" role="dialog" aria-label="Fala de ${html(region.rival.name)}" aria-live="polite">
       <div class="vn__stage" aria-hidden="true">
@@ -323,6 +328,7 @@ function resolveAnswer() {
     }
     save.recordAnswer({ question: battle.question, selected: battle.selected, correct: result.isCorrect, mode: battle.mode, regionId: battle.region.id });
     audio.effect(result.isCorrect ? "correct" : "wrong");
+    if (result.status !== "active") audio.lifeDrain();
     battle.lastResult = { ...result, selected: battle.selected };
     renderBattle();
   } catch (error) {
@@ -354,13 +360,15 @@ function useAbility(id) {
 function nextQuestion() {
   const dialogue = getDialogue(battle.region);
   if (battle.engine.status !== "active") {
-    if (battle.engine.status === "won") return startCutscene(dialogue.defeat, duelResult, "Ver resultado do duelo");
+    if (battle.engine.status === "won") return startCutscene(dialogue.defeat, duelResult, "Ver resultado do duelo", { sprites: [battle.region.rival.damageSprite] });
     return duelResult();
   }
   const rival = battle.region.rival;
   const rivalHurt = battle.lastResult?.isCorrect;
   const pool = rivalHurt ? dialogue.onRivalDamage : dialogue.onPlayerDamage;
-  const reaction = pool?.length ? [pickRandom(pool)] : [];
+  const line = pickVaried(pool, battle.lastReactionLine);
+  if (line) battle.lastReactionLine = line;
+  const reaction = line ? [line] : [];
   const proceed = () => {
     battle.question = battle.repository.next(battle.region);
     battle.selected = null;
@@ -369,7 +377,12 @@ function nextQuestion() {
     battle.lastResult = null;
     renderBattle();
   };
-  const options = rivalHurt ? { sprite: rival.damageSprite, voice: pickRandom(rival.voice?.damage) } : {};
+  let options = {};
+  if (rivalHurt) {
+    const clip = pickVaried(rival.voice?.damage, battle.lastDamageVoice);
+    if (clip) battle.lastDamageVoice = clip;
+    options = { sprite: rival.damageSprite, voice: clip };
+  }
   startCutscene(reaction, proceed, "Próxima rodada", options);
 }
 

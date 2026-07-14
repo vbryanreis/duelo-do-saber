@@ -9,6 +9,9 @@
 - sprite de dano do rival exibido na fala de reação quando o jogador acerta (Lucy machucada nos Jardins da Aurora).
 - cartas de resposta redesenhadas com moldura estilo card de jogo: zona de arte com o glifo central da alternativa (A–E), selo da tecla de atalho e barra de nome.
 - vozes de dublagem nas cenas de diálogo: saudação do rival na apresentação e fala aleatória ao sofrer dano; novo canal de áudio de voz respeitando o volume de efeitos e o botão de áudio.
+- duas novas falas de dano para Lucy (seis no total) e sorteio sem repetição imediata para falas e vozes de reação.
+- efeito sonoro de pontos de vida se esgotando (bipes descendentes e baque final, estilo contador de PV) quando o duelo termina.
+- na cena de derrota do rival, a primeira fala mostra o sprite de dano e as falas seguintes retornam ao sprite neutro.
 
 ## [0.1.0] — 2026-07-14
 

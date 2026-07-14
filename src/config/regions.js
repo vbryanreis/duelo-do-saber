@@ -43,7 +43,9 @@ export const REGIONS = [
           "Essa resposta brotou forte! Muito bem.",
           "Ótimo… você regou bem essa ideia.",
           "Sinto o solo tremer. Você aprende rápido!",
-          "Bela colheita. Mas o jardim ainda tem canteiros a explorar."
+          "Bela colheita. Mas o jardim ainda tem canteiros a explorar.",
+          "Ai! Até as flores sentiram essa.",
+          "Essa raiz chegou funda… preciso me recompor."
         ],
         onPlayerDamage: [
           "Cuidado, essa trilha tinha espinhos.",
