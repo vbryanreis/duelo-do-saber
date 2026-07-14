@@ -16,11 +16,38 @@ export const REGIONS = [
       title: "Guardiã da Aurora",
       archetype: "Naturalista",
       portrait: "L",
+      portraitImage: "assets/images/characters/lucy_profile.png",
+      sprite: "assets/images/characters/lucy_neutral.png",
       concept: "Uma duelista botânica de roupas leves, capa-folha e pingente solar; leva um caderno de campo transformado em grimório.",
       personality: "Acolhedora, observadora e competitiva sem crueldade. Ensina pelo incentivo e celebra a curiosidade.",
       intro: "Toda resposta é uma semente. Vamos descobrir quais você cultivou?",
       lowHealth: "Suas raízes estão fortes… mas o jardim ainda tem surpresas.",
-      defeat: "Que floresça em você a coragem de continuar aprendendo."
+      defeat: "Que floresça em você a coragem de continuar aprendendo.",
+      dialogue: {
+        presentation: [
+          "Seja bem-vindo aos Jardins da Aurora. Eu sou Lucy, a guardiã deste lugar.",
+          "Aqui cada ideia floresce como uma semente bem cuidada.",
+          "Não tenha pressa: no jardim, quem observa com calma colhe melhor.",
+          "Mostre-me o que você cultivou nos seus estudos. Vamos começar?"
+        ],
+        onRivalDamage: [
+          "Essa resposta brotou forte! Muito bem.",
+          "Ótimo… você regou bem essa ideia.",
+          "Sinto o solo tremer. Você aprende rápido!",
+          "Bela colheita. Mas o jardim ainda tem canteiros a explorar."
+        ],
+        onPlayerDamage: [
+          "Cuidado, essa trilha tinha espinhos.",
+          "Nem toda flor bonita é a resposta certa. Observe de novo.",
+          "Tudo bem tropeçar: até o jardineiro poda antes de florescer.",
+          "Essa semente ainda precisa de mais cuidado."
+        ],
+        defeat: [
+          "Meu jardim se curva ao seu conhecimento…",
+          "Você cultivou algo raro: sabedoria com paciência.",
+          "Leve uma semente daqui. Que floresça em você a coragem de continuar aprendendo."
+        ]
+      }
     }
   },
   {

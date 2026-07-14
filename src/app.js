@@ -17,12 +17,17 @@ if (!save.data.packages.some((pack) => pack.package_id === save.data.campaign.pa
 save.persist();
 const audio = new AudioManager(save.data.settings);
 const MAIN_THEME = "assets/music/Duelo do Saber - Main Theme.mp3";
+const PLAYER = {
+  profileImage: "assets/images/characters/player_profile.png",
+  sprite: "assets/images/characters/player_neutral.png"
+};
 let battle = null;
 let importReport = null;
 let pendingPack = null;
 let toastTimer;
 
 const html = (value = "") => String(value).replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
+const portrait = (image, fallback) => image ? `<img class="portrait-img" src="${html(image)}" alt="">` : html(fallback);
 const difficultyName = { easy: "Fácil", medium: "Médio", hard: "Difícil" };
 const modeName = { campaign: "Campanha", quick: "Duelo Rápido", review: "Revisão" };
 
@@ -129,7 +134,7 @@ function regionCard(region) {
     <div>
       <span class="region-card__number">REGIÃO ${region.order} ${completed ? "• CONCLUÍDA" : locked ? "• BLOQUEADA" : "• DISPONÍVEL"}</span>
       <h2>${html(region.name)}</h2>
-      <div class="rival-medallion">${html(region.rival.portrait)}</div>
+      <div class="rival-medallion">${portrait(region.rival.portraitImage, region.rival.portrait)}</div>
       <h3>${html(region.rival.name)}</h3>
       <p>${html(region.rival.title)} • ${region.rival.age} anos</p>
       <div class="tags"><span class="tag">${region.difficulties.map((item) => difficultyName[item]).join(" / ")}</span><span class="tag">${suitable} questões adequadas</span></div>
@@ -152,7 +157,7 @@ function rivalInfo(regionId) {
   setView(`
     ${viewHead(region.rival.name, `${region.rival.title} • ${region.name}`)}
     <section class="panel character-sheet">
-      <div class="rival-medallion" style="--card-accent:${regionColor(region.theme)}">${html(region.rival.portrait)}</div>
+      <div class="rival-medallion" style="--card-accent:${regionColor(region.theme)}">${portrait(region.rival.portraitImage, region.rival.portrait)}</div>
       <div>
         <p class="eyebrow">Conceito inicial de personagem</p>
         <h2>${html(region.rival.archetype)} • ${region.rival.age} anos</h2>
@@ -196,11 +201,62 @@ function startDuel(region, mode, pack, difficulty, questions = pack?.questions |
     selected: null,
     eliminated: new Set(),
     hint: "",
-    lastResult: null
+    lastResult: null,
+    cutscene: null
   };
   battle.question = battle.repository.next(region);
   audio.play(region.track);
-  renderBattle();
+  startCutscene(getDialogue(region).presentation, renderBattle, "Clique para duelar");
+}
+
+function getDialogue(region) {
+  const rival = region.rival;
+  if (rival.dialogue) return rival.dialogue;
+  return {
+    presentation: [rival.intro].filter(Boolean),
+    onRivalDamage: [rival.lowHealth, rival.intro].filter(Boolean),
+    onPlayerDamage: [rival.intro].filter(Boolean),
+    defeat: [rival.defeat].filter(Boolean)
+  };
+}
+
+function startCutscene(lines, onDone, endHint) {
+  const clean = (lines || []).filter(Boolean);
+  if (!battle || !clean.length) return onDone();
+  battle.cutscene = { lines: clean, index: 0, onDone, endHint };
+  renderCutscene();
+}
+
+function advanceCutscene() {
+  if (!battle?.cutscene) return;
+  const scene = battle.cutscene;
+  scene.index += 1;
+  if (scene.index >= scene.lines.length) {
+    battle.cutscene = null;
+    scene.onDone();
+  } else {
+    renderCutscene();
+  }
+}
+
+function renderCutscene() {
+  const { region, cutscene } = battle;
+  const line = cutscene.lines[cutscene.index];
+  const last = cutscene.index >= cutscene.lines.length - 1;
+  const hint = last ? cutscene.endHint || "Clique para continuar" : "Clique para continuar";
+  setView(`
+    <section class="vn" data-action="advance-cutscene" role="dialog" aria-label="Fala de ${html(region.rival.name)}" aria-live="polite">
+      <div class="vn__stage" aria-hidden="true">
+        <div class="vn__sprite vn__sprite--player">${PLAYER.sprite ? `<img src="${html(PLAYER.sprite)}" alt="">` : ""}</div>
+        <div class="vn__sprite vn__sprite--rival">${region.rival.sprite ? `<img src="${html(region.rival.sprite)}" alt="">` : `<span class="vn__sprite-fallback">${html(region.rival.portrait)}</span>`}</div>
+      </div>
+      <div class="vn__box panel">
+        <p class="vn__name">${html(region.rival.name)}</p>
+        <p class="vn__text">${html(line)}</p>
+        <p class="vn__hint">${hint} • ${cutscene.index + 1}/${cutscene.lines.length}</p>
+      </div>
+    </section>
+  `, region.theme);
 }
 
 function renderBattle() {
@@ -210,9 +266,9 @@ function renderBattle() {
   setView(`
     <section class="battle">
       <div class="battle-top panel">
-        <div class="fighter fighter--player"><div class="fighter__portrait">DS</div><div><strong>${html(save.data.profile.name)}</strong><small>${engine.playerHp.toLocaleString("pt-BR")} / 8.000 PV</small><div class="hp"><div class="hp__fill" style="width:${engine.playerHp / 80}%"></div></div></div></div>
+        <div class="fighter fighter--player"><div class="fighter__portrait">${portrait(PLAYER.profileImage, "DS")}</div><div><strong>${html(save.data.profile.name)}</strong><small>${engine.playerHp.toLocaleString("pt-BR")} / 8.000 PV</small><div class="hp"><div class="hp__fill" style="width:${engine.playerHp / 80}%"></div></div></div></div>
         <span class="versus">VS</span>
-        <div class="fighter fighter--rival"><div><strong>${html(region.rival.name)}</strong><small>${engine.rivalHp.toLocaleString("pt-BR")} / 8.000 PV</small><div class="hp"><div class="hp__fill" style="width:${engine.rivalHp / 80}%"></div></div></div><div class="fighter__portrait">${html(region.rival.portrait)}</div></div>
+        <div class="fighter fighter--rival"><div><strong>${html(region.rival.name)}</strong><small>${engine.rivalHp.toLocaleString("pt-BR")} / 8.000 PV</small><div class="hp"><div class="hp__fill" style="width:${engine.rivalHp / 80}%"></div></div></div><div class="fighter__portrait">${portrait(region.rival.portraitImage, region.rival.portrait)}</div></div>
       </div>
       <p class="rival-line">“${html(rivalLine)}”</p>
       <article class="question-card">
@@ -291,13 +347,22 @@ function useAbility(id) {
 }
 
 function nextQuestion() {
-  if (battle.engine.status !== "active") return duelResult();
-  battle.question = battle.repository.next(battle.region);
-  battle.selected = null;
-  battle.eliminated = new Set();
-  battle.hint = "";
-  battle.lastResult = null;
-  renderBattle();
+  const dialogue = getDialogue(battle.region);
+  if (battle.engine.status !== "active") {
+    if (battle.engine.status === "won") return startCutscene(dialogue.defeat, duelResult, "Ver resultado do duelo");
+    return duelResult();
+  }
+  const pool = battle.lastResult?.isCorrect ? dialogue.onRivalDamage : dialogue.onPlayerDamage;
+  const reaction = pool?.length ? [pool[Math.floor(Math.random() * pool.length)]] : [];
+  const proceed = () => {
+    battle.question = battle.repository.next(battle.region);
+    battle.selected = null;
+    battle.eliminated = new Set();
+    battle.hint = "";
+    battle.lastResult = null;
+    renderBattle();
+  };
+  startCutscene(reaction, proceed, "Próxima rodada");
 }
 
 function duelResult() {
@@ -448,6 +513,7 @@ document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-action]");
   if (!button || button.disabled) return;
   const action = button.dataset.action;
+  if (action === "advance-cutscene") return advanceCutscene();
   if (["menu", "campaign", "quick", "forge", "weaknesses", "stats", "collection", "settings"].includes(action)) return ({ menu, campaign, quick, forge, weaknesses, stats, collection, settings })[action]();
   if (action === "toggle-audio") {
     const enabled = audio.toggle();
@@ -540,7 +606,15 @@ document.addEventListener("input", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (!battle || battle.lastResult || event.target.matches("input, select, textarea")) return;
+  if (event.target.matches("input, select, textarea")) return;
+  if (battle?.cutscene) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      advanceCutscene();
+    }
+    return;
+  }
+  if (!battle || battle.lastResult) return;
   const number = Number(event.key);
   if (number >= 1 && number <= 5) {
     const alternative = battle.question.alternatives[number - 1];

@@ -21,3 +21,14 @@ Não publicar ou relicenciar as faixas até que o proprietário registre autor, 
 |---|---|---|
 | `images/duelo_do_saber_bg_main_menu_01.png` | Fundo do menu principal | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
 | `images/duelo_do_saber_bg_aurora_gardens_01.png` | Fundo da região Jardins da Aurora (telas da região, preparação e duelo) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+
+## Personagens
+
+Retratos de perfil (medalhão circular) e sprites de corpo inteiro (estilo visual novel) usados nos duelos.
+
+| Arquivo | Uso no MVP | Origem |
+|---|---|---|
+| `images/characters/player_profile.png` | Foto de perfil do jogador (medalhão) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `images/characters/player_neutral.png` | Sprite do jogador nas cenas de diálogo | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `images/characters/lucy_profile.png` | Foto de perfil de Lucy — Jardins da Aurora (medalhão) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `images/characters/lucy_neutral.png` | Sprite de Lucy nas cenas de diálogo | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
