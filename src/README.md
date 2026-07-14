@@ -8,7 +8,7 @@ O MVP usa JavaScript modular sem dependências externas:
 - `config/regions.js`: cinco regiões e conceitos iniciais dos rivais;
 - `data/demo-pack.js`: 62 questões baseadas exclusivamente no GDD;
 - `services/save-service.js`: save versionado em `localStorage`;
-- `services/audio-manager.js`: música adaptada à tela e região;
+- `services/audio-manager.js`: música adaptada à tela e região, com retomada automática na primeira interação quando o navegador bloqueia autoplay;
 - `app.js`: telas, navegação e integração entre os módulos.
 
 As regras de batalha não dependem do DOM e são cobertas por testes Node.

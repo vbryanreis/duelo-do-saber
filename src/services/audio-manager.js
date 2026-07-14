@@ -1,22 +1,62 @@
 export class AudioManager {
-  constructor(settings) {
+  constructor(settings, { audio = null, AudioClass = globalThis.Audio, interactionTarget = globalThis.document } = {}) {
     this.settings = settings;
-    this.audio = new Audio();
+    this.audio = audio || new AudioClass();
     this.audio.loop = true;
     this.current = "";
     this.enabled = true;
+    this.interactionTarget = interactionTarget;
+    this.unlockArmed = false;
+    this.unlockEvents = ["pointerdown", "keydown", "touchstart"];
+    this.handleInteraction = this.handleInteraction.bind(this);
+    this.armAutoplayUnlock();
   }
 
   play(track) {
     if (!track) return;
     if (this.current === track) {
-      if (this.enabled && this.audio.paused) this.audio.play().catch(() => {});
+      if (this.enabled && this.audio.paused) this.startPlayback();
       return;
     }
     this.current = track;
     this.audio.src = encodeURI(track);
     this.audio.volume = this.settings.music;
-    if (this.enabled) this.audio.play().catch(() => {});
+    this.startPlayback();
+  }
+
+  startPlayback() {
+    if (!this.enabled || !this.current) return;
+    try {
+      const playback = this.audio.play();
+      if (playback?.then) {
+        playback.then(() => this.disarmAutoplayUnlock()).catch(() => this.armAutoplayUnlock());
+      } else {
+        this.disarmAutoplayUnlock();
+      }
+    } catch {
+      this.armAutoplayUnlock();
+    }
+  }
+
+  armAutoplayUnlock() {
+    if (this.unlockArmed || !this.interactionTarget?.addEventListener) return;
+    this.unlockArmed = true;
+    for (const eventName of this.unlockEvents) {
+      this.interactionTarget.addEventListener(eventName, this.handleInteraction, true);
+    }
+  }
+
+  disarmAutoplayUnlock() {
+    if (!this.unlockArmed || !this.interactionTarget?.removeEventListener) return;
+    this.unlockArmed = false;
+    for (const eventName of this.unlockEvents) {
+      this.interactionTarget.removeEventListener(eventName, this.handleInteraction, true);
+    }
+  }
+
+  handleInteraction() {
+    if (this.context?.state === "suspended") this.context.resume?.().catch(() => {});
+    this.startPlayback();
   }
 
   setVolume(value) {
@@ -43,7 +83,7 @@ export class AudioManager {
 
   toggle() {
     this.enabled = !this.enabled;
-    if (this.enabled) this.audio.play().catch(() => {});
+    if (this.enabled) this.startPlayback();
     else this.audio.pause();
     return this.enabled;
   }

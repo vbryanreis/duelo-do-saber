@@ -11,3 +11,4 @@ Execute `npm test`. A suíte cobre:
 - prioridade de dificuldade por região;
 - persistência de fraquezas e desbloqueio da campanha.
 - bloqueio de Campanha e Duelo Rápido sem matéria própria importada.
+- início imediato da música quando permitido e retomada na primeira interação quando o navegador bloqueia autoplay.

@@ -15,7 +15,7 @@ if (!save.data.packages.some((pack) => pack.package_id === save.data.campaign.pa
   save.data.campaign.packageId = save.data.packages[0]?.package_id || null;
 }
 save.persist();
-const audio = new AudioManager(save.data.settings);
+const audio = new AudioManager(save.data.settings, { audio: document.querySelector("#music-player") });
 const MAIN_THEME = "assets/music/Duelo do Saber - Main Theme.mp3";
 let battle = null;
 let importReport = null;
