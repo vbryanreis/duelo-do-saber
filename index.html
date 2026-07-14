@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10152b">
+    <meta name="description" content="Duelo do Saber — transforme seus estudos em duelos de cartas.">
+    <title>Duelo do Saber</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-theme="menu">
+    <a class="skip-link" href="#app">Pular para o conteúdo</a>
+    <div class="world" aria-hidden="true">
+      <div class="world__orb world__orb--one"></div>
+      <div class="world__orb world__orb--two"></div>
+      <div class="world__grid"></div>
+      <div class="world__stars"></div>
+    </div>
+    <div class="shell">
+      <header class="topbar">
+        <button class="brand" data-action="menu" aria-label="Ir ao menu principal">
+          <span class="brand__sigil">DS</span>
+          <span><strong>Duelo do Saber</strong><small>Conhecimento é poder em jogo</small></span>
+        </button>
+        <div class="topbar__actions">
+          <span id="profile-chip" class="profile-chip"></span>
+          <button class="icon-button" data-action="toggle-audio" aria-label="Ativar ou desativar música" title="Música">♪</button>
+        </div>
+      </header>
+      <main id="app" tabindex="-1" aria-live="polite"></main>
+      <footer class="footer">MVP local • sem cronômetro • progresso salvo neste navegador</footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

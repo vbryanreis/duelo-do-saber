@@ -2,92 +2,92 @@
 
 ## Épico 0 — Fundação do repositório
 
-- [ ] Confirmar motor e linguagem.
-- [ ] Criar projeto vazio executável.
-- [ ] Configurar lint, formatação e testes.
+- [x] Confirmar motor e linguagem.
+- [x] Criar projeto vazio executável.
+- [x] Configurar verificações de sintaxe e testes.
 - [ ] Implementar CI básica.
 - [ ] Definir convenção de branches e commits.
-- [ ] Criar primeira versão do sistema de configuração.
+- [x] Criar primeira versão do sistema de configuração.
 
 ## Épico 1 — Modelo e importação de conteúdo
 
-- [ ] Implementar modelos `QuestionPack`, `Question` e `Alternative`.
-- [ ] Implementar leitura de JSON UTF-8.
-- [ ] Validar JSON Schema.
-- [ ] Implementar validações educacionais adicionais.
-- [ ] Criar relatório de erros e avisos.
-- [ ] Detectar IDs e perguntas duplicadas.
-- [ ] Criar biblioteca local de pacotes.
-- [ ] Implementar exclusão e substituição segura.
-- [ ] Criar gerador de prompt copiável.
+- [x] Implementar modelos `QuestionPack`, `Question` e `Alternative`.
+- [x] Implementar leitura de JSON UTF-8.
+- [x] Validar o contrato estrutural equivalente ao JSON Schema no cliente.
+- [x] Implementar validações educacionais adicionais.
+- [x] Criar relatório de erros e avisos.
+- [x] Detectar IDs e perguntas duplicadas.
+- [x] Criar biblioteca local de pacotes.
+- [x] Implementar exclusão e substituição segura.
+- [x] Criar gerador de prompt copiável.
 
 ## Épico 2 — Motor de batalha
 
-- [ ] Inicializar ambos os duelistas com 8.000 PV.
-- [ ] Distribuir exatamente cinco alternativas.
-- [ ] Confirmar seleção antes de avaliar.
-- [ ] Aplicar 1.000 de dano ao rival por acerto.
-- [ ] Aplicar dano conforme dificuldade por erro.
-- [ ] Encerrar por vitória ou derrota.
-- [ ] Registrar cada resposta imediatamente.
-- [ ] Criar testes unitários para todas as regras.
+- [x] Inicializar ambos os duelistas com 8.000 PV.
+- [x] Distribuir exatamente cinco alternativas.
+- [x] Confirmar seleção antes de avaliar.
+- [x] Aplicar 1.000 de dano ao rival por acerto.
+- [x] Aplicar dano conforme dificuldade por erro.
+- [x] Encerrar por vitória ou derrota.
+- [x] Registrar cada resposta imediatamente.
+- [x] Criar testes unitários para as regras centrais.
 
 ## Épico 3 — Interface do duelo
 
-- [ ] Exibir Carta-Desafio.
-- [ ] Exibir cinco Cartas-Resposta.
+- [x] Exibir Carta-Desafio.
+- [x] Exibir cinco Cartas-Resposta.
 - [ ] Criar painel ampliado para textos longos.
 - [ ] Criar barras de vida.
-- [ ] Criar confirmação de jogada.
-- [ ] Criar animações de acerto e erro puláveis.
-- [ ] Criar painel de explicação.
-- [ ] Criar tela de resultado.
+- [x] Criar confirmação de jogada.
+- [x] Criar transições de acerto e erro imediatamente avançáveis.
+- [x] Criar painel de explicação.
+- [x] Criar tela de resultado.
 
 ## Épico 4 — Campanha
 
-- [ ] Criar mapa com cinco regiões.
-- [ ] Implementar bloqueio e desbloqueio.
-- [ ] Implementar perfis dos cinco rivais.
-- [ ] Implementar seletor por dificuldade e estilo.
-- [ ] Detectar conteúdo insuficiente antes do duelo.
-- [ ] Salvar melhor resultado por região.
+- [x] Criar mapa com cinco regiões.
+- [x] Implementar bloqueio e desbloqueio.
+- [x] Implementar perfis dos cinco rivais.
+- [x] Implementar seletor por dificuldade e estilo.
+- [x] Detectar conteúdo insuficiente antes do duelo.
+- [x] Salvar melhor resultado por região.
 
 ## Épico 5 — Aprendizado e revisão
 
-- [ ] Criar Baralho das Fraquezas.
-- [ ] Registrar questões erradas e dúvidas.
+- [x] Criar Baralho das Fraquezas.
+- [x] Registrar questões erradas e dúvidas.
 - [ ] Implementar agendamento inicial de revisão.
-- [ ] Calcular domínio básico por assunto.
-- [ ] Exibir estatísticas por matéria e assunto.
-- [ ] Implementar modo Revisão das Fraquezas.
+- [x] Calcular domínio básico por assunto.
+- [x] Exibir estatísticas por assunto.
+- [x] Implementar modo Revisão das Fraquezas.
 
 ## Épico 6 — Habilidades e progressão
 
-- [ ] Implementar Energia do Saber.
-- [ ] Implementar Visão do Sábio.
-- [ ] Implementar Consulta Arcana.
-- [ ] Implementar Escudo da Memória.
-- [ ] Implementar Segunda Chance.
-- [ ] Implementar Concentração Absoluta.
-- [ ] Implementar combos sem dano adicional.
-- [ ] Criar XP, moedas e recompensas cosméticas iniciais.
+- [x] Implementar Energia do Saber.
+- [x] Implementar Visão do Sábio.
+- [x] Implementar Consulta Arcana.
+- [x] Implementar Escudo da Memória.
+- [x] Implementar Segunda Chance.
+- [x] Implementar Concentração Absoluta.
+- [x] Implementar combos sem dano adicional.
+- [x] Criar XP, moedas e recompensas cosméticas iniciais.
 
 ## Épico 7 — Modos e menus
 
-- [ ] Menu principal.
-- [ ] Nova campanha e continuar.
-- [ ] Duelo Rápido.
-- [ ] Configurações.
-- [ ] Coleção.
-- [ ] Estatísticas.
+- [x] Menu principal.
+- [x] Campanha nova e continuável por save local.
+- [x] Duelo Rápido.
+- [x] Configurações.
+- [x] Coleção.
+- [x] Estatísticas.
 
 ## Épico 8 — Acessibilidade, qualidade e lançamento
 
-- [ ] Texto ajustável.
-- [ ] Alto contraste.
-- [ ] Redução de movimento e flashes.
-- [ ] Navegação por teclado.
-- [ ] Controles de áudio.
+- [x] Texto ajustável.
+- [x] Alto contraste.
+- [x] Redução de movimento e flashes.
+- [x] Navegação de duelo por teclado.
+- [x] Controles separados de música e efeitos.
 - [ ] Testes de importação com pacotes corrompidos.
 - [ ] Testes de salvamento e recuperação.
 - [ ] Build executável do MVP.

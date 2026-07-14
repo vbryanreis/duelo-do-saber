@@ -77,6 +77,7 @@ As regras abaixo só podem ser alteradas mediante decisão explícita do proprie
 13. O conteúdo da campanha depende dos pacotes importados pelo usuário.
 14. O MVP possui cinco regiões e cinco duelistas, um rival por região.
 15. Nenhuma habilidade pode revelar diretamente a alternativa correta.
+16. Campanha e Duelo Rápido permanecem bloqueados até a instalação de ao menos um pacote próprio válido.
 
 ---
 
@@ -352,8 +353,8 @@ O MVP contém cinco regiões, cada uma com um rival. A estética começa clara e
 ### 12.1 Região 1 — Jardins da Aurora
 
 **Visual:** jardins luminosos, fontes, flores, árvores bem cuidadas e arquitetura elegante.  
-**Duelista:** Liora, a Iniciadora.  
-**Perfil:** amigável, confiante e competitiva.  
+**Duelista:** Lucy, a Guardiã da Aurora, 25 anos.
+**Perfil:** naturalista acolhedora, observadora e competitiva sem crueldade; ensina pelo incentivo e celebra a curiosidade.
 **Estilos prioritários:** conceito, definição, fundamento, associação.  
 **Dificuldade predominante:** fácil.  
 **Função:** tutorial integrado e primeira vitória do jogador.
@@ -361,36 +362,36 @@ O MVP contém cinco regiões, cada uma com um rival. A estética começa clara e
 ### 12.2 Região 2 — Biblioteca de Cristal
 
 **Visual:** biblioteca monumental, grandes janelas, cristais flutuantes e partículas mágicas.  
-**Duelista:** Cedric, o Arquivista.  
-**Perfil:** calmo, culto e levemente arrogante.  
+**Duelista:** Roberto, o Arquivista Prismático, 28 anos.
+**Perfil:** nerd analítico, entusiasmado por detalhes e dono de humor seco; parece arrogante, mas respeita raciocínio fundamentado.
 **Estilos prioritários:** memorização, literalidade, comparação, sequência.  
 **Dificuldade predominante:** fácil e média.
 
 ### 12.3 Região 3 — Tribunal Celestial
 
 **Visual:** tribunal elevado sobre nuvens, colunas gigantes, símbolos de equilíbrio e céu dramático.  
-**Duelista:** Valéria, a Julgadora.  
-**Perfil:** séria, rigorosa e estratégica.  
+**Duelista:** Rebecca, a Árbitra Celeste, 27 anos.
+**Perfil:** nobre formal, justa e estratégica; exige argumentos claros, mas não humilha quem admite um erro.
 **Estilos prioritários:** interpretação, aplicação, caso prático, comparação.  
 **Dificuldade predominante:** média.
 
-O conceito de julgamento é abstrato e funciona para qualquer matéria: Valéria exige que o jogador decida qual resposta aplica corretamente o conhecimento.
+O conceito de julgamento é abstrato e funciona para qualquer matéria: Rebecca exige que o jogador decida qual resposta aplica corretamente o conhecimento.
 
 ### 12.4 Região 4 — Forja da Razão
 
 **Visual:** fortaleza industrial e mágica, engrenagens, energia, mecanismos e lava controlada.  
-**Duelista:** Kael, o Engenheiro do Caos.  
-**Perfil:** provocador, inventivo e imprevisível.  
+**Duelista:** Merrick, o General da Forja, 34 anos.
+**Perfil:** ferreiro, general e soldado imperial; disciplinado, direto e protetor com seus comandados, admira persistência acima de pose.
 **Estilos prioritários:** cálculo, exceção, pegadinha, sequência, múltiplas etapas.  
 **Dificuldade predominante:** média e difícil.
 
-Quando o pacote não possuir cálculos, Kael utiliza exceções, relações complexas, ordenação e alternativas muito semelhantes.
+Quando o pacote não possuir cálculos, Merrick utiliza exceções, relações complexas, ordenação e alternativas muito semelhantes.
 
 ### 12.5 Região 5 — Cidadela do Eclipse
 
 **Visual:** arena monumental no topo de uma cidadela, tempestades, energia cósmica e estruturas antigas.  
-**Duelista:** Magnus, o Soberano do Saber.  
-**Perfil:** imponente e severo durante o duelo; respeitoso após a derrota.  
+**Duelista:** Apollo, o Imperador do Eclipse, 47 anos.
+**Perfil:** imperador e ditador autoritário, eloquente e calculista; confunde obediência com sabedoria e reconhece, após a derrota, a força que não conseguiu controlar.
 **Estilos prioritários:** combinação de todos os estilos, com ênfase em perguntas avançadas.  
 **Dificuldade predominante:** difícil.  
 **Função:** chefe final do primeiro ciclo da campanha.
@@ -970,7 +971,6 @@ As questões abaixo não alteram a linha de base e devem ser decididas antes ou 
 - formato final do sistema de salvamento;
 - algoritmo inicial de domínio;
 - fórmula exata de XP e moedas;
-- nomes definitivos dos duelistas;
 - identidade visual final do jogador;
 - classificação indicativa e idiomas de lançamento;
 - licença do código e dos ativos;

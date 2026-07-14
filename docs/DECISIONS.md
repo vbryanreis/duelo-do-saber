@@ -46,6 +46,36 @@ O pacote de perguntas será um arquivo JSON UTF-8, por ser texto estruturado, va
 
 ## D-007 — Motor do jogo
 
-**Status:** Pendente
+**Status:** Aprovada para o MVP
+**Data:** 2026-07-14
 
-Recomendação inicial: Godot 4.x com GDScript. Confirmar antes da criação do código-base.
+O MVP será implementado como aplicação web offline em HTML, CSS e JavaScript modular, servido por um processo Node.js sem dependências externas. A escolha permite validar imediatamente o produto em computadores, manter o `BattleEngine` independente da interface, executar testes automatizados e preservar uma futura migração para Godot ou empacotamento desktop após a validação do vertical slice.
+
+## D-008 — Duelistas definitivos do MVP
+
+**Status:** Aprovada
+**Data:** 2026-07-14
+
+Os cinco duelistas são:
+
+1. Lucy, 25 anos, naturalista dos Jardins da Aurora;
+2. Roberto, 28 anos, arquivista nerd da Biblioteca de Cristal;
+3. Rebecca, 27 anos, nobre árbitra do Tribunal Celestial;
+4. Merrick, 34 anos, ferreiro, general e soldado imperial da Forja da Razão;
+5. Apollo, 47 anos, imperador ditatorial da Cidadela do Eclipse.
+
+Os conceitos visuais e traços de personalidade presentes no MVP são provisórios e poderão ser refinados sem alterar nomes, idades ou papéis aprovados.
+
+## D-009 — Pacote demonstrativo do GDD
+
+**Status:** Aprovada para validação interna
+**Data:** 2026-07-14
+
+O código mantém um pacote demonstrativo com perguntas criadas exclusivamente a partir do próprio GDD apenas para testes automatizados. Ele não é instalado no save e não libera modos de jogo. Campanha e Duelo Rápido exigem ao menos um pacote próprio importado e validado pelo jogador.
+
+## D-010 — Importação obrigatória antes do primeiro duelo
+
+**Status:** Aprovada
+**Data:** 2026-07-14
+
+Nenhum duelo de Campanha ou Duelo Rápido pode começar antes que o jogador importe e instale ao menos um pacote próprio válido. Sem conteúdo, o menu direciona à Forja do Conhecimento. Essa regra também é aplicada a saves anteriores que ainda contenham o pacote demonstrativo interno.
