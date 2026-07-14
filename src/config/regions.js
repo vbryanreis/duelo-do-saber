@@ -18,6 +18,15 @@ export const REGIONS = [
       portrait: "L",
       portraitImage: "assets/images/characters/lucy_profile.png",
       sprite: "assets/images/characters/lucy_neutral.png",
+      damageSprite: "assets/images/characters/lucy_damage.png",
+      voice: {
+        greetings: "assets/voices/lucy/lucy_greetings.mp3",
+        damage: [
+          "assets/voices/lucy/lucy_damage_01.mp3",
+          "assets/voices/lucy/lucy_damage_02.mp3",
+          "assets/voices/lucy/lucy_damage_03.mp3"
+        ]
+      },
       concept: "Uma duelista botânica de roupas leves, capa-folha e pingente solar; leva um caderno de campo transformado em grimório.",
       personality: "Acolhedora, observadora e competitiva sem crueldade. Ensina pelo incentivo e celebra a curiosidade.",
       intro: "Toda resposta é uma semente. Vamos descobrir quais você cultivou?",

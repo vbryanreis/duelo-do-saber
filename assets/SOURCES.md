@@ -32,3 +32,15 @@ Retratos de perfil (medalhão circular) e sprites de corpo inteiro (estilo visua
 | `images/characters/player_neutral.png` | Sprite do jogador nas cenas de diálogo | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
 | `images/characters/lucy_profile.png` | Foto de perfil de Lucy — Jardins da Aurora (medalhão) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
 | `images/characters/lucy_neutral.png` | Sprite de Lucy nas cenas de diálogo | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `images/characters/lucy_damage.png` | Sprite de Lucy ao sofrer dano (reação de acerto do jogador) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+
+## Vozes
+
+Falas de dublagem dos personagens usadas nas cenas de diálogo.
+
+| Arquivo | Uso no MVP | Origem |
+|---|---|---|
+| `voices/lucy/lucy_greetings.mp3` | Saudação de Lucy na apresentação antes do duelo | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `voices/lucy/lucy_damage_01.mp3` | Fala de Lucy ao sofrer dano (variação 1) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `voices/lucy/lucy_damage_02.mp3` | Fala de Lucy ao sofrer dano (variação 2) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `voices/lucy/lucy_damage_03.mp3` | Fala de Lucy ao sofrer dano (variação 3) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |

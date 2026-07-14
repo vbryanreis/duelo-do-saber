@@ -76,6 +76,7 @@ function findQuestion(questionId) {
 
 function menu() {
   battle = null;
+  audio.stopVoice();
   audio.play(MAIN_THEME);
   const completed = Object.keys(save.data.campaign.completed).length;
   const ready = hasImportedPack();
@@ -206,7 +207,7 @@ function startDuel(region, mode, pack, difficulty, questions = pack?.questions |
   };
   battle.question = battle.repository.next(region);
   audio.play(region.track);
-  startCutscene(getDialogue(region).presentation, renderBattle, "Clique para duelar");
+  startCutscene(getDialogue(region).presentation, renderBattle, "Clique para duelar", { voice: region.rival.voice?.greetings });
 }
 
 function getDialogue(region) {
@@ -220,11 +221,14 @@ function getDialogue(region) {
   };
 }
 
-function startCutscene(lines, onDone, endHint) {
+const pickRandom = (list) => list?.length ? list[Math.floor(Math.random() * list.length)] : null;
+
+function startCutscene(lines, onDone, endHint, options = {}) {
   const clean = (lines || []).filter(Boolean);
   if (!battle || !clean.length) return onDone();
-  battle.cutscene = { lines: clean, index: 0, onDone, endHint };
+  battle.cutscene = { lines: clean, index: 0, onDone, endHint, sprite: options.sprite || null };
   renderCutscene();
+  if (options.voice) audio.voice(options.voice);
 }
 
 function advanceCutscene() {
@@ -244,11 +248,12 @@ function renderCutscene() {
   const line = cutscene.lines[cutscene.index];
   const last = cutscene.index >= cutscene.lines.length - 1;
   const hint = last ? cutscene.endHint || "Clique para continuar" : "Clique para continuar";
+  const rivalSprite = cutscene.sprite || region.rival.sprite;
   setView(`
     <section class="vn" data-action="advance-cutscene" role="dialog" aria-label="Fala de ${html(region.rival.name)}" aria-live="polite">
       <div class="vn__stage" aria-hidden="true">
         <div class="vn__sprite vn__sprite--player">${PLAYER.sprite ? `<img src="${html(PLAYER.sprite)}" alt="">` : ""}</div>
-        <div class="vn__sprite vn__sprite--rival">${region.rival.sprite ? `<img src="${html(region.rival.sprite)}" alt="">` : `<span class="vn__sprite-fallback">${html(region.rival.portrait)}</span>`}</div>
+        <div class="vn__sprite vn__sprite--rival">${rivalSprite ? `<img src="${html(rivalSprite)}" alt="">` : `<span class="vn__sprite-fallback">${html(region.rival.portrait)}</span>`}</div>
       </div>
       <div class="vn__box panel">
         <p class="vn__name">${html(region.rival.name)}</p>
@@ -282,7 +287,7 @@ function renderBattle() {
           ${Object.entries(ABILITIES).map(([id, ability]) => `<button class="ability" data-action="ability" data-ability="${id}" ${engine.energy < ability.cost || engine.uses[id] >= ability.limit || (id === "hint" && !question.hint) ? "disabled" : ""}><strong>${html(ability.name)}</strong><small>${ability.cost} energia • ${engine.uses[id]}/${ability.limit} usos</small></button>`).join("")}
         </aside>
         <div class="cards" role="list" aria-label="Cinco Cartas-Resposta">
-          ${question.alternatives.map((alternative, index) => `<button class="answer-card ${battle.selected === alternative.id ? "selected" : ""} ${battle.eliminated.has(alternative.id) ? "eliminated" : ""}" data-action="select-answer" data-answer="${alternative.id}" ${battle.eliminated.has(alternative.id) ? "disabled" : ""} role="listitem" aria-pressed="${battle.selected === alternative.id}"><span class="answer-card__letter">${alternative.id}</span><span class="answer-card__key">tecla ${index + 1}</span><strong>${html(alternative.card_name)}</strong><p>${html(alternative.description)}</p></button>`).join("")}
+          ${question.alternatives.map((alternative, index) => `<button class="answer-card ${battle.selected === alternative.id ? "selected" : ""} ${battle.eliminated.has(alternative.id) ? "eliminated" : ""}" data-action="select-answer" data-answer="${alternative.id}" ${battle.eliminated.has(alternative.id) ? "disabled" : ""} role="listitem" aria-pressed="${battle.selected === alternative.id}"><span class="answer-card__art"><span class="answer-card__key">tecla ${index + 1}</span><span class="answer-card__glyph" aria-hidden="true">${alternative.id}</span></span><span class="answer-card__body"><span class="answer-card__title"><span class="answer-card__letter">${alternative.id}</span><strong>${html(alternative.card_name)}</strong></span><p>${html(alternative.description)}</p></span></button>`).join("")}
         </div>
         <div class="confirm-bar"><div><span class="combo">${engine.combo || "Escolha uma carta e confirme"}</span><small class="muted" style="display:block">${battle.selected ? `Carta ${battle.selected} selecionada` : "Tempo ilimitado • use 1–5 no teclado"}</small></div><div class="button-row" style="margin:0"><button class="btn" data-action="pause">Sair do duelo</button><button class="btn btn--primary" data-action="confirm-answer" ${battle.selected ? "" : "disabled"}>Confirmar jogada</button></div></div>
       </div>
@@ -352,8 +357,10 @@ function nextQuestion() {
     if (battle.engine.status === "won") return startCutscene(dialogue.defeat, duelResult, "Ver resultado do duelo");
     return duelResult();
   }
-  const pool = battle.lastResult?.isCorrect ? dialogue.onRivalDamage : dialogue.onPlayerDamage;
-  const reaction = pool?.length ? [pool[Math.floor(Math.random() * pool.length)]] : [];
+  const rival = battle.region.rival;
+  const rivalHurt = battle.lastResult?.isCorrect;
+  const pool = rivalHurt ? dialogue.onRivalDamage : dialogue.onPlayerDamage;
+  const reaction = pool?.length ? [pickRandom(pool)] : [];
   const proceed = () => {
     battle.question = battle.repository.next(battle.region);
     battle.selected = null;
@@ -362,10 +369,12 @@ function nextQuestion() {
     battle.lastResult = null;
     renderBattle();
   };
-  startCutscene(reaction, proceed, "Próxima rodada");
+  const options = rivalHurt ? { sprite: rival.damageSprite, voice: pickRandom(rival.voice?.damage) } : {};
+  startCutscene(reaction, proceed, "Próxima rodada", options);
 }
 
 function duelResult() {
+  audio.stopVoice();
   const snapshot = battle.engine.snapshot();
   const won = snapshot.status === "won";
   const result = save.finishDuel(battle.region, snapshot, won, battle.mode);

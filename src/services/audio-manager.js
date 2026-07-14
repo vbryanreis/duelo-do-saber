@@ -41,6 +41,19 @@ export class AudioManager {
     oscillator.stop(this.context.currentTime + 0.2);
   }
 
+  voice(clip) {
+    if (!clip || !this.enabled || !this.settings.effects) return;
+    this.voiceAudio ||= new Audio();
+    this.voiceAudio.pause();
+    this.voiceAudio.src = encodeURI(clip);
+    this.voiceAudio.volume = Math.min(1, Math.max(0.4, this.settings.effects));
+    this.voiceAudio.play().catch(() => {});
+  }
+
+  stopVoice() {
+    if (this.voiceAudio) this.voiceAudio.pause();
+  }
+
   toggle() {
     this.enabled = !this.enabled;
     if (this.enabled) this.audio.play().catch(() => {});

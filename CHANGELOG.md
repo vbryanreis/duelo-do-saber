@@ -6,6 +6,9 @@
 - fotos de perfil nos medalhões (jogador e rival) no mapa da campanha, na ficha do duelista e no topo do duelo, com fallback para a letra quando não há imagem.
 - cenas de diálogo estilo visual novel: apresentação do rival antes do duelo, reação a cada rodada (ao causar ou sofrer dano) e falas de derrota ao ser vencido; o jogador aparece em silêncio de frente para o adversário.
 - diálogos e imagens (perfil e sprite) de Lucy, guardiã dos Jardins da Aurora; sistema pronto para os demais rivais receberem seus próprios diálogos e retratos.
+- sprite de dano do rival exibido na fala de reação quando o jogador acerta (Lucy machucada nos Jardins da Aurora).
+- cartas de resposta redesenhadas com moldura estilo card de jogo: zona de arte com o glifo central da alternativa (A–E), selo da tecla de atalho e barra de nome.
+- vozes de dublagem nas cenas de diálogo: saudação do rival na apresentação e fala aleatória ao sofrer dano; novo canal de áudio de voz respeitando o volume de efeitos e o botão de áudio.
 
 ## [0.1.0] — 2026-07-14
 
