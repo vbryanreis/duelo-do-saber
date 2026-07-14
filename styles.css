@@ -47,6 +47,14 @@ body[data-theme="menu"] .world__grid,
 body[data-theme="menu"] .world__stars { opacity: 0; }
 
 body[data-theme="aurora"] { --bg: #0b2827; --accent: #a9ef9a; --accent-2: #ffd47e; --gold: #ffe19b; }
+body[data-theme="aurora"] .world {
+  background:
+    linear-gradient(180deg, rgba(6, 14, 11, .38), rgba(6, 14, 11, .6)),
+    url("assets/images/duelo_do_saber_bg_aurora_gardens_01.png") center center / cover no-repeat fixed;
+}
+body[data-theme="aurora"] .world__orb,
+body[data-theme="aurora"] .world__grid,
+body[data-theme="aurora"] .world__stars { opacity: 0; }
 body[data-theme="crystal"] { --bg: #111535; --accent: #79e9ff; --accent-2: #a788ff; --gold: #d8f7ff; }
 body[data-theme="celestial"] { --bg: #18213d; --accent: #c7d8ff; --accent-2: #ffd580; --gold: #ffe6a8; }
 body[data-theme="forge"] { --bg: #2b140d; --accent: #ff9b56; --accent-2: #ffc76b; --gold: #ffdc8c; --danger: #ff6a55; }

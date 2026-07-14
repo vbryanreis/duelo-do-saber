@@ -15,8 +15,9 @@ As seis faixas abaixo foram fornecidas diretamente pelo proprietário do projeto
 
 Não publicar ou relicenciar as faixas até que o proprietário registre autor, origem e permissão de uso.
 
-## Imagem do menu principal
+## Imagens
 
 | Arquivo | Uso no MVP | Origem |
 |---|---|---|
 | `images/duelo_do_saber_bg_main_menu_01.png` | Fundo do menu principal | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
+| `images/duelo_do_saber_bg_aurora_gardens_01.png` | Fundo da região Jardins da Aurora (telas da região, preparação e duelo) | Fornecida diretamente pelo proprietário em 14 de julho de 2026; autoria/licença a confirmar antes da distribuição pública |
