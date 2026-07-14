@@ -1,0 +1,65 @@
+{
+  "format_version": "1.0",
+  "package_id": "pacote-demonstracao",
+  "title": "Pacote de Demonstração",
+  "description": "Exemplo mínimo do formato de importação.",
+  "language": "pt-BR",
+  "generated_at": "2026-07-14",
+  "subjects": [
+    "Conhecimentos Gerais"
+  ],
+  "questions": [
+    {
+      "id": "conhecimento-metodo-001",
+      "subject": "Conhecimentos Gerais",
+      "topic": "Métodos de estudo",
+      "subtopic": "Revisão",
+      "difficulty": "easy",
+      "styles": [
+        "concept"
+      ],
+      "prompt": "Qual prática busca revisar conteúdos em intervalos progressivamente maiores?",
+      "alternatives": [
+        {
+          "id": "A",
+          "card_name": "Leitura Passiva",
+          "description": "Reler o mesmo texto continuamente, sem testar a recordação.",
+          "explanation": "A releitura passiva não define o uso planejado de intervalos."
+        },
+        {
+          "id": "B",
+          "card_name": "Repetição Espaçada",
+          "description": "Revisar o conteúdo em intervalos planejados que aumentam conforme a retenção melhora.",
+          "explanation": "Esta é a definição de repetição espaçada."
+        },
+        {
+          "id": "C",
+          "card_name": "Estudo Aleatório",
+          "description": "Trocar de assunto sem planejamento ou acompanhamento de desempenho.",
+          "explanation": "A alternância aleatória não caracteriza intervalos progressivos."
+        },
+        {
+          "id": "D",
+          "card_name": "Cópia Integral",
+          "description": "Copiar todo o material para produzir uma segunda versão idêntica.",
+          "explanation": "Copiar não é o mesmo que programar revisões."
+        },
+        {
+          "id": "E",
+          "card_name": "Leitura Dinâmica",
+          "description": "Aumentar a velocidade de leitura para percorrer mais conteúdo em menos tempo.",
+          "explanation": "Velocidade de leitura não define o espaçamento das revisões."
+        }
+      ],
+      "correct_alternative": "B",
+      "correct_explanation": "Repetição espaçada distribui revisões ao longo do tempo, ajustando os intervalos conforme a retenção.",
+      "hint": "Pense na distância entre as revisões.",
+      "source_reference": "Exemplo demonstrativo criado para validar o formato.",
+      "keywords": [
+        "revisão",
+        "intervalos",
+        "retenção"
+      ]
+    }
+  ]
+}
