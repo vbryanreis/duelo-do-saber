@@ -78,11 +78,46 @@ export const REGIONS = [
       title: "Arquivista Prismático",
       archetype: "Nerd erudito",
       portrait: "R",
+      portraitImage: "assets/images/characters/roberto_profile.png",
+      sprite: "assets/images/characters/roberto_neutral.png",
+      voice: {
+        greetings: "assets/voices/roberto/roberto_greetings.mp3",
+        damage: [
+          "assets/voices/roberto/roberto_damage_01.mp3",
+          "assets/voices/roberto/roberto_damage_02.mp3"
+        ]
+      },
       concept: "Um pesquisador de casaco azul-violeta, óculos de lentes hexagonais e bracelete que projeta índices de cristal.",
       personality: "Analítico, entusiasmado por detalhes e dono de um humor seco. Parece arrogante, mas respeita raciocínio bem fundamentado.",
       intro: "Cataloguei doze maneiras de você errar. Surpreenda meu índice.",
       lowHealth: "Interessante… você está reescrevendo minhas previsões.",
-      defeat: "Registro atualizado: sua competência é estatisticamente inegável."
+      defeat: "Registro atualizado: sua competência é estatisticamente inegável.",
+      dialogue: {
+        presentation: [
+          "Bem-vindo à Biblioteca de Cristal. Roberto, arquivista prismático, ao seu dispor.",
+          "Cada prisma aqui refrata uma verdade — poucos sabem lê-las.",
+          "Já cataloguei doze maneiras de você errar. Prove que superestimei o número.",
+          "Vamos indexar seu conhecimento. Comece quando estiver pronto."
+        ],
+        onRivalDamage: [
+          "Hm. Dado registrado… e inesperado.",
+          "Correto. Minhas estatísticas pedem um ajuste.",
+          "Interessante. Você está reescrevendo minhas previsões.",
+          "Um índice a menos a meu favor. Continue.",
+          "Preciso e elegante. Anotado."
+        ],
+        onPlayerDamage: [
+          "Como previa a nota de rodapé número sete.",
+          "Erro comum. Está catalogado no volume três.",
+          "A resposta bonita raramente é a correta. Reavalie.",
+          "Consulte suas fontes antes de afirmar."
+        ],
+        defeat: [
+          "Registro atualizado: sua competência é estatisticamente inegável.",
+          "Terei de reescrever todo o índice a seu respeito.",
+          "Leve este cristal. Você conquistou um lugar nos meus arquivos."
+        ]
+      }
     }
   },
   {

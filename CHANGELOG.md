@@ -12,6 +12,8 @@
 - duas novas falas de dano para Lucy (seis no total) e sorteio sem repetição imediata para falas e vozes de reação.
 - efeito sonoro de pontos de vida se esgotando (bipes descendentes e baque final, estilo contador de PV) quando o duelo termina.
 - na cena de derrota do rival, a primeira fala mostra o sprite de dano e as falas seguintes retornam ao sprite neutro.
+- fundo dedicado da região Biblioteca de Cristal aplicado às telas da região, preparação e duelo.
+- Roberto (Biblioteca de Cristal) com foto de perfil, sprite, vozes (saudação + duas de dano) e diálogos próprios; sem arte de dano dedicada, usa o sprite neutro como fallback.
 
 ## [0.1.0] — 2026-07-14
 

@@ -55,6 +55,14 @@ body[data-theme="aurora"] .world {
 body[data-theme="aurora"] .world__orb,
 body[data-theme="aurora"] .world__grid,
 body[data-theme="aurora"] .world__stars { opacity: 0; }
+body[data-theme="crystal"] .world {
+  background:
+    linear-gradient(180deg, rgba(9, 11, 26, .5), rgba(9, 11, 26, .7)),
+    url("assets/images/duelo_do_saber_bg_crystal_library_01.png") center center / cover no-repeat fixed;
+}
+body[data-theme="crystal"] .world__orb,
+body[data-theme="crystal"] .world__grid,
+body[data-theme="crystal"] .world__stars { opacity: 0; }
 body[data-theme="crystal"] { --bg: #111535; --accent: #79e9ff; --accent-2: #a788ff; --gold: #d8f7ff; }
 body[data-theme="celestial"] { --bg: #18213d; --accent: #c7d8ff; --accent-2: #ffd580; --gold: #ffe6a8; }
 body[data-theme="forge"] { --bg: #2b140d; --accent: #ff9b56; --accent-2: #ffc76b; --gold: #ffdc8c; --danger: #ff6a55; }
